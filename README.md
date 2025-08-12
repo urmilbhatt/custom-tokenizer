@@ -4,11 +4,14 @@ An interactive web application that demonstrates text tokenization using the `js
 
 ## 🎥 Demo Video
 
-https://github.com/yourusername/custom-tokenizer/assets/yourusername/custom-tokenizer-demo.mov
+![Custom Tokenizer Demo](assets/custom-tokenizer-demo.mov)
 
 *Watch the Custom Tokenizer in action - real-time text tokenization with interactive highlighting*
 
-> **Note**: Once you push this repository to GitHub, update the video URL above with the actual GitHub video URL. GitHub will automatically process the video and provide an embeddable link.
+> **Note**: For the video to display properly on GitHub:
+> 1. **Push your repository to GitHub first**
+> 2. **GitHub will automatically process the video** and make it viewable
+> 3. **Alternative**: Convert to GIF format for better compatibility: `![Demo](assets/custom-tokenizer-demo.gif)`
 
 ## Features
 
