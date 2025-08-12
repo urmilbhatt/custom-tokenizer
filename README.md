@@ -4,14 +4,7 @@ An interactive web application that demonstrates text tokenization using the `js
 
 ## 🎥 Demo Video
 
-![Custom Tokenizer Demo](assets/custom-tokenizer-demo.mov)
-
-*Watch the Custom Tokenizer in action - real-time text tokenization with interactive highlighting*
-
-> **Note**: For the video to display properly on GitHub:
-> 1. **Push your repository to GitHub first**
-> 2. **GitHub will automatically process the video** and make it viewable
-> 3. **Alternative**: Convert to GIF format for better compatibility: `![Demo](assets/custom-tokenizer-demo.gif)`
+https://github.com/urmilbhatt/custom-tokenizer/assets/custom-tokenizer-demo.mov
 
 ## Features
 
@@ -35,17 +28,20 @@ An interactive web application that demonstrates text tokenization using the `js
 ## Installation
 
 1. **Clone the repository**:
+
    ```bash
    git clone <repository-url>
    cd custom-tokenizer
    ```
 
 2. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 3. **Start the development server**:
+
    ```bash
    npm start
    ```
@@ -55,17 +51,20 @@ An interactive web application that demonstrates text tokenization using the `js
 ## Usage
 
 ### Basic Tokenization
+
 1. Type or paste text in the left input panel
 2. Watch as the text is automatically tokenized in real-time
 3. View tokenized output on the right side
 
 ### Interactive Features
+
 - **Hover over text**: See which tokens correspond to specific text segments
 - **Hover over tokens**: See the corresponding text highlighted in the input
 - **Token details**: View token ID, length, and position information
 - **Word highlighting**: Hovered words are highlighted in a yellow box below the input
 
 ### Token Display
+
 - **Token IDs**: Large, bold numbers in colored boxes for easy identification
 - **Actual Text**: Clean, readable text display below the tokens
 - **Statistics**: Essential metrics including total tokens, unique tokens, and length information
@@ -86,50 +85,12 @@ src/
 └── index.css               # Global styles and Tailwind imports
 ```
 
-## Key Components
-
-### Tokenizer.js
-- Manages the main tokenization logic
-- Handles encoding/decoding using js-tiktoken
-- Coordinates between input and output components
-
-### TextInput.js
-- Provides text input interface using contenteditable div
-- Implements text highlighting on hover
-- Shows hovered word in a separate highlight box
-
-### TokenOutput.js
-- Displays token IDs as colored blocks
-- Shows actual text below the tokens
-- Implements token hover effects with stable layout
-- Shows token details without causing layout shifts
-
 ### TokenStats.js
+
 - Displays essential token metrics
 - Shows total tokens, unique tokens, and average length
 - Identifies shortest and longest tokens
 - Clean, focused design without unnecessary information
-
-## Customization
-
-### Colors
-The application uses a custom pastel color palette defined in `tailwind.config.js`. You can modify these colors to match your preferences:
-
-```javascript
-colors: {
-  'pastel-blue': '#E0F2FE',
-  'pastel-green': '#DCFCE7',
-  'pastel-purple': '#F3E8FF',
-  // ... more colors
-}
-```
-
-### Tokenizer Model
-The application uses the "gpt-4" model by default. You can change this in `App.js`:
-
-```javascript
-const enc = encoding_for_model("gpt-3.5-turbo"); // or other models
-```
 
 ## Building for Production
 
@@ -150,14 +111,6 @@ This will create an optimized build in the `build/` directory.
 - **tailwindcss**: ^3.3.0
 - **autoprefixer**: ^10.4.14
 - **postcss**: ^8.4.24
-
-## Browser Support
-
-The application supports all modern browsers that support:
-- ES6+ features
-- CSS Grid and Flexbox
-- CSS Custom Properties
-- Modern CSS features
 
 ## Contributing
 
