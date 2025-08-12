@@ -10,7 +10,6 @@ function Tokenizer({ encoder }) {
   const [hoveredTokenIndex, setHoveredTokenIndex] = useState(null);
   const [hoveredTextRange, setHoveredTextRange] = useState(null);
 
-  // Encode text to tokens
   const encodeText = (text) => {
     if (!encoder || !text.trim()) {
       setTokens([]);
@@ -34,7 +33,6 @@ function Tokenizer({ encoder }) {
     }
   };
 
-  // Decode tokens back to text
   const decodeTokens = useCallback((tokenList) => {
     if (!encoder || tokenList.length === 0) {
       setDecodedText('');
@@ -51,13 +49,11 @@ function Tokenizer({ encoder }) {
     }
   }, [encoder]);
 
-  // Handle text input changes
   const handleTextChange = (text) => {
     setInputText(text);
     encodeText(text);
   };
 
-  // Handle token hover
   const handleTokenHover = (tokenIndex) => {
     setHoveredTokenIndex(tokenIndex);
     
@@ -74,7 +70,6 @@ function Tokenizer({ encoder }) {
     }
   };
 
-  // Handle text hover
   const handleTextHover = (start, end) => {
     setHoveredTextRange({ start, end });
     
@@ -102,7 +97,6 @@ function Tokenizer({ encoder }) {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Left Column - Input */}
         <div className="space-y-6">
           <TextInput
             value={inputText}
@@ -113,7 +107,6 @@ function Tokenizer({ encoder }) {
           <TokenStats tokens={tokens} />
         </div>
 
-        {/* Right Column - Output */}
         <div className="space-y-6">
           <TokenOutput
             tokens={tokens}

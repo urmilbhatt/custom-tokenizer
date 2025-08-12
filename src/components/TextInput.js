@@ -7,7 +7,6 @@ function TextInput({ value, onChange, onTextHover, hoveredRange }) {
   const [internalValue, setInternalValue] = useState(value);
   const [isFocused, setIsFocused] = useState(false);
 
-  // Sync internal value with prop
   useEffect(() => {
     setInternalValue(value);
   }, [value]);
@@ -35,7 +34,6 @@ function TextInput({ value, onChange, onTextHover, hoveredRange }) {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    // Get the element under the mouse
     const elementBelow = document.elementFromPoint(e.clientX, e.clientY);
     if (!elementBelow || !el.contains(elementBelow)) {
       setHoveredText('');
@@ -84,16 +82,13 @@ function TextInput({ value, onChange, onTextHover, hoveredRange }) {
       }
 
       if (found && charIndex < internalValue.length) {
-        // Find word boundaries
         let start = charIndex;
         let end = charIndex;
         
-        // Find start of word
         while (start > 0 && /\S/.test(internalValue[start - 1])) {
           start--;
         }
         
-        // Find end of word
         while (end < internalValue.length && /\S/.test(internalValue[end])) {
           end++;
         }
@@ -109,7 +104,6 @@ function TextInput({ value, onChange, onTextHover, hoveredRange }) {
       console.warn('Error in mouse move handler:', error);
     }
 
-    // Clear hover if no word found
     setHoveredText('');
     onTextHover(null, null);
   };
@@ -120,7 +114,6 @@ function TextInput({ value, onChange, onTextHover, hoveredRange }) {
     onTextHover(null, null);
   };
 
-  // Show placeholder when no text and not focused
   const showPlaceholder = !internalValue && !isFocused;
 
   return (
@@ -145,14 +138,12 @@ function TextInput({ value, onChange, onTextHover, hoveredRange }) {
           }}
         />
         
-        {/* Placeholder */}
         {showPlaceholder && (
           <div className="absolute top-4 left-4 text-gray-400 pointer-events-none">
             Enter your text here to see it tokenized...
           </div>
         )}
         
-        {/* Hover indicator */}
         {isHovering && hoveredText && (
           <div className="absolute -top-10 left-0 bg-gray-800 text-white px-2 py-1 rounded text-sm pointer-events-none z-10">
             Hovering: "{hoveredText}"
@@ -160,7 +151,6 @@ function TextInput({ value, onChange, onTextHover, hoveredRange }) {
         )}
       </div>
       
-      {/* Word highlight indicator */}
       {hoveredText && (
         <div className="mt-3 p-3 bg-pastel-yellow rounded-lg border border-yellow-300">
           <div className="text-sm text-yellow-800">
@@ -172,7 +162,6 @@ function TextInput({ value, onChange, onTextHover, hoveredRange }) {
         </div>
       )}
       
-      {/* Character count */}
       <div className="mt-3 text-sm text-gray-500 text-right">
         {internalValue.length} characters
       </div>
