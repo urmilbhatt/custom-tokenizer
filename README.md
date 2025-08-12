@@ -85,13 +85,6 @@ src/
 └── index.css               # Global styles and Tailwind imports
 ```
 
-### TokenStats.js
-
-- Displays essential token metrics
-- Shows total tokens, unique tokens, and average length
-- Identifies shortest and longest tokens
-- Clean, focused design without unnecessary information
-
 ## Building for Production
 
 To create a production build:
@@ -119,10 +112,6 @@ This will create an optimized build in the `build/` directory.
 3. Make your changes
 4. Test thoroughly
 5. Submit a pull request
-
-## License
-
-This project is open source and available under the MIT License.
 
 ## Acknowledgments
 
