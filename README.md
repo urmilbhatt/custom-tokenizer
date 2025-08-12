@@ -2,9 +2,9 @@
 
 An interactive web application that demonstrates text tokenization using the `js-tiktoken` library. Built with React and Tailwind CSS, this application provides real-time encoding/decoding of text with interactive highlighting features.
 
-## 🎥 Demo Video
+## 🎥 Demo Image
 
-https://github.com/urmilbhatt/custom-tokenizer/assets/custom-tokenizer-demo.mov
+![Image](/assets/custom-tokenizer-img.png)
 
 ## Features
 
