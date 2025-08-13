@@ -2,30 +2,28 @@ import React, { useState, useEffect, useCallback } from 'react';
 import TextInput from './TextInput';
 import TokenOutput from './TokenOutput';
 import TokenStats from './TokenStats';
+import VocabularyDisplay from './VocabularyDisplay';
 
-function Tokenizer({ encoder }) {
+function Tokenizer({ tokenizer }) {
   const [inputText, setInputText] = useState('');
   const [tokens, setTokens] = useState([]);
   const [decodedText, setDecodedText] = useState('');
   const [hoveredTokenIndex, setHoveredTokenIndex] = useState(null);
   const [hoveredTextRange, setHoveredTextRange] = useState(null);
 
+  // Encode text to tokens using custom tokenizer
   const encodeText = (text) => {
-    if (!encoder || !text.trim()) {
+    if (!tokenizer || !text.trim()) {
       setTokens([]);
       return;
     }
 
     try {
-      const encoded = encoder.encode(text);
-      const tokenDetails = encoded.map((tokenId, index) => {
-        const tokenText = encoder.decode([tokenId]);
-        return {
-          id: tokenId,
-          text: tokenText,
-          index: index
-        };
-      });
+      // Learn from the new text to improve vocabulary
+      tokenizer.learnFromText(text);
+      
+      // Get token details
+      const tokenDetails = tokenizer.getTokenDetails(text);
       setTokens(tokenDetails);
     } catch (error) {
       console.error('Encoding error:', error);
@@ -33,27 +31,30 @@ function Tokenizer({ encoder }) {
     }
   };
 
+  // Decode tokens back to text using custom tokenizer
   const decodeTokens = useCallback((tokenList) => {
-    if (!encoder || tokenList.length === 0) {
+    if (!tokenizer || tokenList.length === 0) {
       setDecodedText('');
       return;
     }
 
     try {
       const tokenIds = tokenList.map(token => token.id);
-      const decoded = encoder.decode(tokenIds);
+      const decoded = tokenizer.decode(tokenIds);
       setDecodedText(decoded);
     } catch (error) {
       console.error('Decoding error:', error);
       setDecodedText('');
     }
-  }, [encoder]);
+  }, [tokenizer]);
 
+  // Handle text input changes
   const handleTextChange = (text) => {
     setInputText(text);
     encodeText(text);
   };
 
+  // Handle token hover
   const handleTokenHover = (tokenIndex) => {
     setHoveredTokenIndex(tokenIndex);
     
@@ -70,6 +71,7 @@ function Tokenizer({ encoder }) {
     }
   };
 
+  // Handle text hover
   const handleTextHover = (start, end) => {
     setHoveredTextRange({ start, end });
     
@@ -92,11 +94,12 @@ function Tokenizer({ encoder }) {
   // Update decoded text when tokens change
   useEffect(() => {
     decodeTokens(tokens);
-  }, [tokens, encoder, decodeTokens]);
+  }, [tokens, decodeTokens]);
 
   return (
     <div className="max-w-6xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Left Column - Input */}
         <div className="space-y-6">
           <TextInput
             value={inputText}
@@ -105,8 +108,10 @@ function Tokenizer({ encoder }) {
             hoveredRange={hoveredTextRange}
           />
           <TokenStats tokens={tokens} />
+          <VocabularyDisplay tokenizer={tokenizer} />
         </div>
 
+        {/* Right Column - Output */}
         <div className="space-y-6">
           <TokenOutput
             tokens={tokens}

@@ -71,7 +71,7 @@ function TokenOutput({ tokens, onTokenHover, hoveredIndex }) {
         </div>
       </div>
 
-      {/* Actual Text Display */}
+      {/* Actual Text Display - Improved */}
       <div className="bg-gray-50 rounded-md p-4 mb-4">
         <h4 className="text-sm font-semibold text-gray-700 mb-2">Actual Text:</h4>
         <div className="text-sm text-gray-800 font-mono bg-white p-3 rounded border">
@@ -84,10 +84,36 @@ function TokenOutput({ tokens, onTokenHover, hoveredIndex }) {
               `}
               onMouseEnter={() => handleTokenHover(index)}
               onMouseLeave={handleTokenLeave}
+              title={`Token ${index + 1} (ID: ${token.id})`}
             >
               {token.text}
             </span>
           ))}
+        </div>
+      </div>
+
+      {/* Token-Text Correspondence */}
+      <div className="bg-gray-50 rounded-md p-4 mb-4">
+        <h4 className="text-sm font-semibold text-gray-700 mb-2">Token-Text Mapping:</h4>
+        <div className="bg-white p-3 rounded border max-h-32 overflow-y-auto">
+          <div className="grid grid-cols-1 gap-1 text-xs">
+            {tokens.map((token, index) => (
+              <div
+                key={`mapping-${index}`}
+                className={`
+                  flex justify-between items-center p-1 rounded
+                  ${hoveredIndex === index ? 'bg-pastel-yellow' : 'bg-gray-50'}
+                `}
+                onMouseEnter={() => handleTokenHover(index)}
+                onMouseLeave={handleTokenLeave}
+              >
+                <span className="font-mono text-gray-600">#{index + 1}</span>
+                <span className="font-mono text-gray-800">{token.id}</span>
+                <span className="text-gray-700">→</span>
+                <span className="text-gray-800">"{token.text}"</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       

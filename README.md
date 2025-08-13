@@ -1,10 +1,10 @@
 # Custom Tokenizer
 
-An interactive web application that demonstrates text tokenization using the `js-tiktoken` library. Built with React and Tailwind CSS, this application provides real-time encoding/decoding of text with interactive highlighting features.
+An interactive web application that demonstrates text tokenization using a **custom-built tokenizer**. Built with React and Tailwind CSS, this application provides real-time encoding/decoding of text with interactive highlighting features and learns vocabulary from the text it processes.
 
-## 🎥 Demo Image
+## 🎥 Demo Video
 
-![Image](/assets/custom-tokenizer-img.png)
+![Image](/assets/custom-tokenizer-demo-image.png)
 
 ## Features
 
@@ -14,16 +14,43 @@ An interactive web application that demonstrates text tokenization using the `js
 - **Actual Text Display**: See the actual text below the token IDs
 - **Essential Statistics**: Key token metrics without clutter
 - **Beautiful UI**: Modern, responsive design with pastel color schemes
-- **Encoding/Decoding**: Uses js-tiktoken for accurate tokenization
+- **Custom Tokenizer**: Built from scratch without external dependencies
+- **Vocabulary Learning**: Automatically learns and builds vocabulary from input text
+- **Export/Import**: Save and load learned vocabulary
 - **Token Visualization**: Color-coded tokens with hover effects
 
 ## Technologies Used
 
 - **React 18** - Modern React with hooks
 - **Tailwind CSS** - Utility-first CSS framework
-- **js-tiktoken** - JavaScript implementation of OpenAI's tiktoken tokenizer
+- **Custom Tokenizer** - Built from scratch using JavaScript
 - **PostCSS** - CSS processing
 - **Autoprefixer** - CSS vendor prefixing
+
+## How the Custom Tokenizer Works
+
+### **Vocabulary Learning**
+
+- **Special Tokens**: Built-in tokens like `<PAD>`, `<UNK>`, `<START>`, `<END>`, `<SEP>`
+- **Word Learning**: Automatically learns new words from input text
+- **Subword Patterns**: Identifies common character patterns and bigrams
+- **Frequency Threshold**: Only includes tokens that appear frequently enough
+
+### **Tokenization Process**
+
+1. **Text Preprocessing**: Converts to lowercase, handles punctuation
+2. **Word Splitting**: Breaks text into words and subwords
+3. **Pattern Recognition**: Identifies common character combinations
+4. **Vocabulary Building**: Adds new tokens to the growing vocabulary
+5. **Encoding**: Converts text to token IDs
+6. **Decoding**: Converts token IDs back to text
+
+### **Features**
+
+- **Adaptive Learning**: Improves vocabulary as more text is processed
+- **Subword Support**: Handles both complete words and partial patterns
+- **Configurable Parameters**: Adjustable frequency thresholds and token lengths
+- **Persistent Storage**: Export/import vocabulary for reuse
 
 ## Installation
 
@@ -68,6 +95,7 @@ An interactive web application that demonstrates text tokenization using the `js
 - **Token IDs**: Large, bold numbers in colored boxes for easy identification
 - **Actual Text**: Clean, readable text display below the tokens
 - **Statistics**: Essential metrics including total tokens, unique tokens, and length information
+- **Vocabulary**: View and manage the learned vocabulary
 
 ## Project Structure
 
@@ -80,7 +108,10 @@ src/
 │   ├── TextInput.js        # Text input with highlighting
 │   ├── TokenOutput.js      # Token visualization
 │   ├── TokenStats.js       # Essential statistics display
+│   ├── VocabularyDisplay.js # Vocabulary management
 │   └── Footer.js           # Application footer
+├── utils/
+│   └── CustomTokenizer.js  # Custom tokenizer implementation
 ├── index.js                # React entry point
 └── index.css               # Global styles and Tailwind imports
 ```
@@ -99,7 +130,6 @@ This will create an optimized build in the `build/` directory.
 
 - **react**: ^18.2.0
 - **react-dom**: ^18.2.0
-- **js-tiktoken**: ^1.0.21
 - **react-scripts**: 5.0.1
 - **tailwindcss**: ^3.3.0
 - **autoprefixer**: ^10.4.14
@@ -112,9 +142,3 @@ This will create an optimized build in the `build/` directory.
 3. Make your changes
 4. Test thoroughly
 5. Submit a pull request
-
-## Acknowledgments
-
-- OpenAI for the tiktoken tokenizer
-- The js-tiktoken team for the JavaScript implementation
-- React and Tailwind CSS communities for excellent tooling
